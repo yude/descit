@@ -77,7 +77,7 @@ func main() {
 		})
 		fmt.Println("😩 Command exited with non-zero code. Calling ChatGPT sensei...")
 		response := getResponse(api_key)
-		fmt.Println("💬 Explained by ChatGPT (Using " + response.Model + ", Language: " + userLocales[len(userLocales)-1] + "):")
+		fmt.Println("💬 Explanation by ChatGPT (Model: " + response.Model + ", Language: " + userLocales[len(userLocales)-1] + "):")
 		fmt.Println(strings.Replace(response.Choices[0].Messages.Content, "\n\n", "", -1))
 	} else {
 		fmt.Printf("✅ Command exited with no error.")
