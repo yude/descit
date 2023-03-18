@@ -44,7 +44,7 @@ func (c *CLI) Exec(cmd string, args ...string) (stdout string, stdin string, err
 func main() {
 	defer func() {
 		if err := recover(); err != nil {
-			fmt.Printf("Error: Please specify the target command.")
+			fmt.Printf("Error: Please specify the target command.\nUsage: descit <your command>")
 		}
 	}()
 
