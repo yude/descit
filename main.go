@@ -63,7 +63,7 @@ func main() {
 	userLocales, err := locale.GetLocales()
 
 	api_key := os.Getenv("TOKEN")
-	question := "You are a full-time senior software engineer. Describe the following error in " + iso6391.Name(userLocales[0]) + "\n"
+	question := "You are a full-time senior software engineer. Describe the following error in " + iso6391.Name(userLocales[len(userLocales) - 1]) + "\n"
 
     flag.Parse()
     args := flag.Args()
@@ -77,8 +77,8 @@ func main() {
 			Role:    "user",
 			Content: question,
 		})
+		fmt.Printf("Command exited with non-zero code. Calling ChatGPT sensei...")
 		response := getResponse(api_key)
-
 		fmt.Printf("Explained by ChatGPT:")
 		fmt.Printf(response.Choices[0].Messages.Content)
 	} else {
