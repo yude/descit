@@ -10,7 +10,9 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 
+	"github.com/briandowns/spinner"
 	"github.com/jeandeaual/go-locale"
 	"github.com/joho/godotenv"
 )
@@ -75,8 +77,14 @@ func main() {
 			Role:    "user",
 			Content: question,
 		})
-		fmt.Println("😩 Command exited with non-zero code. Calling ChatGPT sensei...")
+		fmt.Println("😩 Command exited with non-zero code. ")
+		s := spinner.New(spinner.CharSets[21], 100*time.Millisecond)
+		s.Color("cyan")
+		s.Suffix = " Calling ChatGPT sensei..."
+
+		s.Start()
 		response := getResponse(api_key)
+		s.Stop()
 		fmt.Println("💬 Explanation by ChatGPT (Model: " + response.Model + ", Language: " + userLocales[len(userLocales)-1] + "):")
 		fmt.Println(strings.Replace(response.Choices[0].Messages.Content, "\n\n", "", -1))
 	} else {
