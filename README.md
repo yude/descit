@@ -3,7 +3,7 @@
 
 ## Install
 ```
-go install github.com/yude/descit
+go install github.com/yude/descit@latest
 ```
 
 ## Setup
