@@ -11,6 +11,7 @@ type OpenaiResponse struct {
 	Created int      `json:"created"`
 	Choices []Choice `json:"choices"`
 	Usages  Usage    `json:"usage"`
+	Model   string   `json:"model"`
 }
 
 type Choice struct {
