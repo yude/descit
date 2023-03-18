@@ -9,6 +9,11 @@ import (
     "os"
     "os/exec"
     "strings"
+	"log"
+
+	"github.com/joho/godotenv"
+	"github.com/jeandeaual/go-locale"
+	"github.com/emvi/iso-639-1"
 )
 
 type CLI struct {
@@ -37,14 +42,34 @@ func (c *CLI) Exec(cmd string, args ...string) (stdout string, stdin string, err
 }
 
 func main() {
-	api_key := ""
-	question := "あなたはプロのソフトウェアエンジニアです。次に示すエラーを解説してください。\n"
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Printf("Error: Please specify the target command.")
+		}
+	}()
+
+
+	home, err := os.UserHomeDir()
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+        return
+	}
+
+	err = godotenv.Load(home + "/.config/descit/.env")
+	if err != nil {
+		log.Fatal("Error: Couldn't retrieve OpenAI's token. Please set the token in `~/.config/descit/.env`.\nREADME: https://github.com/yude/descit")
+	}
+
+	userLocales, err := locale.GetLocales()
+
+	api_key := os.Getenv("TOKEN")
+	question := "You are a full-time senior software engineer. Describe the following error in " + iso6391.Name(userLocales[0]) + "\n"
 
     flag.Parse()
     args := flag.Args()
 
     cli := NewCLI(os.Stdout, os.Stderr)
-    _, stderr, _ := cli.Exec(args[0], args[1:]...)
+    _, stderr, err := cli.Exec(args[0], args[1:]...)
 
     if stderr != "" {
 		question += stderr
@@ -53,8 +78,8 @@ func main() {
 			Content: question,
 		})
 		response := getResponse(api_key)
-		
-		fmt.Printf("ChatGPT による解説:")
+
+		fmt.Printf("Explained by ChatGPT:")
 		fmt.Printf(response.Choices[0].Messages.Content)
 	} else {
 		fmt.Printf("Command exited with no error.")
