@@ -3,10 +3,9 @@ module github.com/yude/descit
 go 1.18
 
 require (
-	github.com/chatgp/chatgpt-go v1.3.1 // indirect
-	github.com/google/uuid v1.3.0 // indirect
-	github.com/launchdarkly/eventsource v1.7.1 // indirect
-	github.com/tidwall/gjson v1.14.4 // indirect
-	github.com/tidwall/match v1.1.1 // indirect
-	github.com/tidwall/pretty v1.2.1 // indirect
+	github.com/emvi/iso-639-1 v1.1.0
+	github.com/jeandeaual/go-locale v0.0.0-20220711133428-7de61946b173
+	github.com/joho/godotenv v1.5.1
 )
+
+require golang.org/x/sys v0.0.0-20211013075003-97ac67df715c // indirect
