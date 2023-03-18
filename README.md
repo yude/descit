@@ -1,9 +1,10 @@
 # descit
 🤩 ChatGPT describes your error 
 
-## Install
+## Install & Update
+* Please make sure Go's bin folder is in your `$PATH`.
 ```
-go install github.com/yude/descit@latest
+go install github.com/yude/descit@HEAD
 ```
 
 ## Setup
