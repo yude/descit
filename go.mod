@@ -1,4 +1,4 @@
-module github.com/yude/descit
+module github.com/yude/descit v1.0.0
 
 go 1.18
 
