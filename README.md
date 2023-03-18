@@ -2,7 +2,7 @@
 🤩 ChatGPT describes your error 
 
 ## Install & Update
-* Please make sure Go's bin folder is in your `$PATH`.
+* Please make sure Go's bin folder is in your `PATH`.
 ```
 go install github.com/yude/descit@HEAD
 ```
@@ -17,7 +17,7 @@ go install github.com/yude/descit@HEAD
 ## Use
 ```bash
 descit <your_command>
-# Example
+# Example:
 # descit gcc main.c
 ```
 
