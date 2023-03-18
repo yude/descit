@@ -61,9 +61,10 @@ func main() {
 	}
 
 	userLocales, err := locale.GetLocales()
+	fmt.Printf(iso6391.Name(userLocales[len(userLocales) - 1]))
 
 	api_key := os.Getenv("TOKEN")
-	question := "You are a full-time senior software engineer. Describe the following error in " + iso6391.Name(userLocales[len(userLocales) - 1]) + "\n"
+	question := "あなたはプロのソフトウェアエンジニアです。以下に続くエラーを分かりやすく説明してください。ただし、この説明は、自然言語の一つである" +  userLocales[len(userLocales) - 1] + "を使用して行ってください。\n"
 
     flag.Parse()
     args := flag.Args()
@@ -77,7 +78,7 @@ func main() {
 			Role:    "user",
 			Content: question,
 		})
-		fmt.Printf("Command exited with non-zero code. Calling ChatGPT sensei...")
+		fmt.Printf("Command exited with non-zero code. Calling ChatGPT sensei...\n")
 		response := getResponse(api_key)
 		fmt.Printf("Explained by ChatGPT:")
 		fmt.Printf(response.Choices[0].Messages.Content)
