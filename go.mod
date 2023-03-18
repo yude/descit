@@ -3,7 +3,6 @@ module github.com/yude/descit
 go 1.18
 
 require (
-	github.com/emvi/iso-639-1 v1.1.0
 	github.com/jeandeaual/go-locale v0.0.0-20220711133428-7de61946b173
 	github.com/joho/godotenv v1.5.1
 )
