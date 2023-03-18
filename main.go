@@ -13,7 +13,6 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/jeandeaual/go-locale"
-	"github.com/emvi/iso-639-1"
 )
 
 type CLI struct {
@@ -61,7 +60,6 @@ func main() {
 	}
 
 	userLocales, err := locale.GetLocales()
-	fmt.Printf(iso6391.Name(userLocales[len(userLocales) - 1]))
 
 	api_key := os.Getenv("TOKEN")
 	question := "あなたはプロのソフトウェアエンジニアです。以下に続くエラーを分かりやすく説明してください。ただし、この説明は、自然言語の一つである" +  userLocales[len(userLocales) - 1] + "を使用して行ってください。\n"
@@ -80,7 +78,7 @@ func main() {
 		})
 		fmt.Printf("Command exited with non-zero code. Calling ChatGPT sensei...\n")
 		response := getResponse(api_key)
-		fmt.Printf("Explained by ChatGPT:")
+		fmt.Printf("Explained by ChatGPT: (Using " + userLocales[len(userLocales) - 1] + ")\n")
 		fmt.Printf(response.Choices[0].Messages.Content)
 	} else {
 		fmt.Printf("Command exited with no error.")
